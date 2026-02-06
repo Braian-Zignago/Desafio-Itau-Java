@@ -1,13 +1,19 @@
 package dev.braianz.DesafioItau.Service;
 
 import dev.braianz.DesafioItau.DTO.TransacaoRequest;
+import dev.braianz.DesafioItau.Repository.TransacaoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TransacaoService {
+
+    private final TransacaoRepository transacaoRepository;
 
     public void validarTransacao(TransacaoRequest transacaoRequest){
 
@@ -28,5 +34,17 @@ public class TransacaoService {
             throw new IllegalArgumentException("Erro: Isso não é uma transação valida, transação com data futura");
         }
 
+    }
+
+    public void registrarTransacao(TransacaoRequest transacaoRequest){
+        transacaoRepository.salvarDados(transacaoRequest);
+    }
+
+    public List<TransacaoRequest> enviarDados(){
+        return transacaoRepository.enviarDados();
+    }
+
+    public void deletarDados(){
+        transacaoRepository.deletarDados();
     }
 }

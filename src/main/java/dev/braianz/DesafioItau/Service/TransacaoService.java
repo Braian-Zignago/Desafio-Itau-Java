@@ -44,6 +44,13 @@ public class TransacaoService {
         return transacaoRepository.enviarDados();
     }
 
+    public List<TransacaoRequest> enviarDados60s(){
+        List<TransacaoRequest> transactions = enviarDados();
+
+        return transactions.stream()
+                .filter(t -> t.getDataHora().isAfter(OffsetDateTime.now().minusSeconds(60))).toList();
+    }
+
     public void deletarDados(){
         transacaoRepository.deletarDados();
     }

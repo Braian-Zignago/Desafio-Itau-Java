@@ -1,6 +1,7 @@
 package dev.braianz.DesafioItau.Controller;
 
 import dev.braianz.DesafioItau.DTO.TransacaoRequest;
+import dev.braianz.DesafioItau.Docs.TransacaoControllerDoc;
 import dev.braianz.DesafioItau.Service.TransacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/transacao")
 @RequiredArgsConstructor
-public class TransacaoController {
+public class TransacaoController implements TransacaoControllerDoc {
 
     private final TransacaoService transacaoService;
 
